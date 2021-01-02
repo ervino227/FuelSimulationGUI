@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 public class Demo {
 	
 	private static void createWindow() {
+		//
 		JFrame frame = new JFrame("Fuel Simulation");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 300);
