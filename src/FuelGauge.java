@@ -3,6 +3,7 @@ import javax.swing.JOptionPane;
 public class FuelGauge {
 
 	private int gallonsOfFuel;
+	private int fuelRange;
 	
 	public FuelGauge() {
 		gallonsOfFuel = 0;
@@ -10,6 +11,12 @@ public class FuelGauge {
 	
 	public int getFuelAmount() {
 		return gallonsOfFuel;
+	}
+	
+	public int getFuelRange(int fuelEconomy, int lastTrip) {
+		fuelRange = fuelEconomy * gallonsOfFuel;
+		fuelRange-=lastTrip;
+		return fuelRange;
 	}
 	
 	public void fillTank(int gallons) {

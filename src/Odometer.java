@@ -25,11 +25,14 @@ public class Odometer {
 				myGauge.burnFuel(fuelBurned);
 			}
 		}
-		
 		mileage+=milesDriven;
 	}
 	
 	public int getMileage() {
 		return mileage;
+	}
+	
+	public int getLastTrip() {
+		return lastTrip;
 	}
 }
