@@ -26,4 +26,8 @@ public class FuelGauge {
 		}
 	}
 	
+	public void burnFuel(int gallonsBurned) {
+		gallonsOfFuel-=gallonsBurned;
+	}
+	
 }

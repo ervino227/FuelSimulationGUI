@@ -13,6 +13,9 @@ public class Demo {
 		//
 		
 		FuelGauge myGauge = new FuelGauge();
+		Odometer myOdometer = new Odometer();
+		
+		System.out.println(50%24);
 		
 		JFrame frame = new JFrame("Fuel Simulation");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,9 +32,9 @@ public class Demo {
 		lblNewLabel.setBounds(10, 28, 135, 14);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("24");
-		lblNewLabel_1.setBounds(147, 28, 29, 14);
-		panel.add(lblNewLabel_1);
+		JLabel fuelEconomyLbl = new JLabel("24");
+		fuelEconomyLbl.setBounds(147, 28, 29, 14);
+		panel.add(fuelEconomyLbl);
 		
 		JButton btnNewButton = new JButton("Change  Value");
 		btnNewButton.setBounds(234, 24, 120, 23);
@@ -66,9 +69,9 @@ public class Demo {
 		lblNewLabel_6.setBounds(10, 62, 79, 14);
 		panel_1.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("0");
-		lblNewLabel_7.setBounds(110, 62, 38, 14);
-		panel_1.add(lblNewLabel_7);
+		JLabel milesDrivenLbl = new JLabel(String.valueOf(myOdometer.getMileage()));
+		milesDrivenLbl.setBounds(110, 62, 38, 14);
+		panel_1.add(milesDrivenLbl);
 		
 		JLabel lblNewLabel_8 = new JLabel("Miles traveled");
 		lblNewLabel_8.setBounds(155, 62, 110, 14);
@@ -92,6 +95,13 @@ public class Demo {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String distanceTraveled = JOptionPane.showInputDialog(frame, "How far will the trip be?\nEnter distance in miles.");
+				int myDistance = Integer.parseInt(distanceTraveled);
+				String fuelEconomy = fuelEconomyLbl.getText();
+				
+				myOdometer.addMiles(Integer.parseInt(fuelEconomy), myDistance, myGauge);
+				milesDrivenLbl.setText(String.valueOf(myOdometer.getMileage()));
+				fuelAmount.setText(String.valueOf(myGauge.getFuelAmount()));
+				
 			}
 		});
 		btnNewButton_2.setBounds(140, 100, 89, 23);
