@@ -1,12 +1,11 @@
+import javax.swing.JOptionPane;
 
 public class FuelGauge {
 
 	private int gallonsOfFuel;
-	private int fuelEconomy;
 	
-	public FuelGauge(int mpg) {
+	public FuelGauge() {
 		gallonsOfFuel = 0;
-		fuelEconomy = mpg;
 	}
 	
 	public int getFuelAmount() {
@@ -14,20 +13,16 @@ public class FuelGauge {
 	}
 	
 	public void fillTank(int gallons) {
-		for(int i = 0; i <= 15; i++) {
+		
+		for(int i = 1; i <= gallons; i++) {
 			if(gallonsOfFuel < 15) {
 				gallonsOfFuel++;
 			}
 			else {
 				//show message for full tank
+				JOptionPane.showMessageDialog(null, "Tank Capacity has been reached");
 				break;
 			}
-		}
-	}
-	
-	public void burnFuel(int milesTraveled) {
-		if ( gallonsOfFuel> 0) {
-			int fuelUsed = milesTraveled/fuelEconomy;
 		}
 	}
 	

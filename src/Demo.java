@@ -11,6 +11,9 @@ public class Demo {
 	
 	private static void createWindow() {
 		//
+		
+		FuelGauge myGauge = new FuelGauge();
+		
 		JFrame frame = new JFrame("Fuel Simulation");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 300);
@@ -51,7 +54,7 @@ public class Demo {
 		lblNewLabel_3.setBounds(10, 25, 79, 14);
 		panel_1.add(lblNewLabel_3);
 		
-		JLabel fuelAmount = new JLabel("0");
+		JLabel fuelAmount = new JLabel(String.valueOf(myGauge.getFuelAmount()));
 		fuelAmount.setBounds(110, 25, 19, 14);
 		panel_1.add(fuelAmount);
 		
@@ -75,7 +78,11 @@ public class Demo {
 		addFuelBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String addedFuel = JOptionPane.showInputDialog(frame, "How much fuel (Gallons) to add?\nEnter a numeric value. (Max capacity: 15 Gallons.)");
-				fuelAmount.setText(addedFuel);
+				int myFuel = Integer.parseInt(addedFuel);
+				
+				myGauge.fillTank(myFuel);
+				
+				fuelAmount.setText(String.valueOf(myGauge.getFuelAmount()));
 			}
 		});
 		addFuelBtn.setBounds(10, 100, 89, 23);
