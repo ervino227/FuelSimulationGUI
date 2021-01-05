@@ -32,6 +32,11 @@ public class Odometer {
 		return mileage;
 	}
 	
+	public void resetMileage() {
+		mileage = 0;
+		lastTrip = 0;
+	}
+	
 	public int getLastTrip() {
 		return lastTrip;
 	}

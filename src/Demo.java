@@ -27,15 +27,46 @@ public class Demo {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
+		JPanel panel2 = new JPanel();
+		panel2.setBounds(10, 103, 364, 131);
+		frame.getContentPane().add(panel2);
+		panel2.setLayout(null);
+		
+		JLabel milesDrivenLbl = new JLabel(String.valueOf(myOdometer.getMileage()));
+		milesDrivenLbl.setBounds(110, 62, 89, 14);
+		panel2.add(milesDrivenLbl);
+		
 		JLabel fuelEconomyLbl = new JLabel("Vehicle Fuel Economy:");
 		fuelEconomyLbl.setBounds(10, 28, 135, 14);
 		panel.add(fuelEconomyLbl);
 		
-		JLabel myFuelEconomy = new JLabel("24");
+		JLabel fuelAmount = new JLabel(String.valueOf(myGauge.getFuelAmount()));
+		fuelAmount.setBounds(110, 25, 89, 14);
+		panel2.add(fuelAmount);
+		
+		JLabel myFuelEconomy = new JLabel(String.valueOf(myGauge.getFuelEconomy()));
 		myFuelEconomy.setBounds(147, 28, 29, 14);
 		panel.add(myFuelEconomy);
 		
-		JButton changeMpgButn = new JButton("Change  Value");
+		JLabel rangeLbl = new JLabel(String.valueOf(myGauge.getFuelRange(Integer.parseInt(myFuelEconomy.getText()),myOdometer.getLastTrip() )));
+		rangeLbl.setBounds(151, 96, 48, 14);
+		panel2.add(rangeLbl);
+		
+		JButton changeMpgButn = new JButton("Change Value");
+		changeMpgButn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String mpg = JOptionPane.showInputDialog(frame, "Enter fuel economy for new vehicle.");
+				int myMpg = Integer.parseInt(mpg);
+				
+				myGauge.setFuelEconomy(myMpg);
+				myGauge.setFuelAmount(0);
+				myOdometer.resetMileage();
+				myFuelEconomy.setText(String.valueOf(myGauge.getFuelEconomy()));
+				milesDrivenLbl.setText(String.valueOf(myOdometer.getMileage()));
+				fuelAmount.setText(String.valueOf(myGauge.getFuelAmount()));
+				rangeLbl.setText("0");
+			}
+		});
 		changeMpgButn.setBounds(234, 24, 120, 23);
 		panel.add(changeMpgButn);
 		
@@ -47,30 +78,13 @@ public class Demo {
 		separator.setBounds(10, 92, 364, 2);
 		frame.getContentPane().add(separator);
 		
-		JPanel panel2 = new JPanel();
-		panel2.setBounds(10, 103, 364, 131);
-		frame.getContentPane().add(panel2);
-		panel2.setLayout(null);
-		
-		JLabel fuelAmount = new JLabel(String.valueOf(myGauge.getFuelAmount()));
-		fuelAmount.setBounds(110, 25, 89, 14);
-		panel2.add(fuelAmount);
-		
 		JLabel gallonsLbl = new JLabel("Gallons of fuel");
 		gallonsLbl.setBounds(10, 25, 110, 14);
 		panel2.add(gallonsLbl);
 		
-		JLabel milesDrivenLbl = new JLabel(String.valueOf(myOdometer.getMileage()));
-		milesDrivenLbl.setBounds(110, 62, 89, 14);
-		panel2.add(milesDrivenLbl);
-		
 		JLabel milesTraveledLbl = new JLabel("Vehicle mileage");
 		milesTraveledLbl.setBounds(10, 62, 110, 14);
 		panel2.add(milesTraveledLbl);
-		
-		JLabel rangeLbl = new JLabel(String.valueOf(myGauge.getFuelRange(Integer.parseInt(myFuelEconomy.getText()),myOdometer.getLastTrip() )));
-		rangeLbl.setBounds(151, 96, 48, 14);
-		panel2.add(rangeLbl);
 		
 		JButton addFuelBtn = new JButton("Add Fuel");
 		addFuelBtn.addActionListener(new ActionListener() {
